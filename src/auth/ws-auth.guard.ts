@@ -23,7 +23,7 @@ export class WsAuthGuard implements CanActivate {
 
     try {
       await this.jwtService.verifyAsync(token, {
-        secret: process.env.JWT_SECRET,
+        secret: process.env.JWT_ACCESS_SECRET,
       });
     } catch (e) {
       console.debug('catched', e);

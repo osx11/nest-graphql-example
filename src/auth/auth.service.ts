@@ -28,7 +28,7 @@ export class AuthService {
 
   async refresh(refreshToken: string) {
     const tokenIsValid = await this.jwtService.verifyAsync(refreshToken, {
-      secret: process.env.JWT_SECRET,
+      secret: process.env.JWT_REFRESH_SECRET,
     });
 
     if (!tokenIsValid) {
@@ -50,7 +50,7 @@ export class AuthService {
     username: string;
   }) {
     return await this.jwtService.signAsync(payload, {
-      secret: process.env.JWT_SECRET,
+      secret: process.env.JWT_ACCESS_SECRET,
       expiresIn: 300, // 5 m
     });
   }
@@ -60,7 +60,7 @@ export class AuthService {
     username: string;
   }) {
     return await this.jwtService.signAsync(payload, {
-      secret: process.env.JWT_SECRET,
+      secret: process.env.JWT_REFRESH_SECRET,
       expiresIn: 60 * 60 * 24, // 24 h
     });
   }

@@ -21,7 +21,7 @@ export class GraphqlAuthGuard implements CanActivate {
 
     try {
       await this.jwtService.verifyAsync(token, {
-        secret: process.env.JWT_SECRET,
+        secret: process.env.JWT_ACCESS_SECRET,
       });
     } catch {
       throw new UnauthorizedException();

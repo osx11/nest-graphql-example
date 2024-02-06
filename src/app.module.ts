@@ -9,14 +9,15 @@ import { ReviewsModule } from './modules/reviews/reviews.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { User } from './users/models/user.entity';
+import 'dotenv/config';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      username: 'postgres',
-      password: '1',
-      database: 'nest-graphql',
+      username: process.env.POSTGRES_USER,
+      password: process.env.POSTGRES_PASSWORD,
+      database: process.env.POSTGRES_DB,
       synchronize: true,
       entities: [Book, Review, User],
     }),
